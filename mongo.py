@@ -21,7 +21,7 @@ client = MongoClient(uri, server_api=ServerApi('1'))
 
 # database and collection code goes here
 db = client.universalis
-coll = db.timeseries
+coll = db.sales
 
 
 def mongoWrap(y):
@@ -32,9 +32,9 @@ def mongoWrap(y):
     mongo_filter['itemID'] = y['itemID']
     # https://pymongo.readthedocs.io/en/stable/examples/datetimes.html
     mongo_filter['lastUploadTime'] = datetime.datetime.fromtimestamp(y['lastUploadTime'] / 1000)
-    mongo_newvalues_values['currentAveragePrice'] = y['currentAveragePrice']
-    mongo_newvalues_values['currentAveragePriceNQ'] = y['currentAveragePriceNQ']
-    mongo_newvalues_values['currentAveragePriceHQ'] = y['currentAveragePriceHQ']
+    mongo_newvalues_values['averagePrice'] = y['averagePrice']
+    # mongo_newvalues_values['averagePriceNQ'] = y['averagePriceNQ']
+    mongo_newvalues_values['averagePriceHQ'] = y['averagePriceHQ']
     mongo_newvalues['$set'] = mongo_newvalues_values
 
     return [mongo_filter, mongo_newvalues]
@@ -53,7 +53,7 @@ def pyMongoPush(y):
 
 # # insert code goes here
 # docs = [
-#     {"itemID": 39313, "lastUploadTime": 1685772979116, "currentAveragePrice": 265151.58, "currentAveragePriceNQ": 246783.78, "currentAveragePriceHQ": 304541.22},
+#     {"itemID": 39313, "lastUploadTime": 1685772979116, "averagePrice": 265151.58, "averagePriceNQ": 246783.78, "averagePriceHQ": 304541.22},
 # ]
 
 # result = coll.insert_many(docs)

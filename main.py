@@ -99,7 +99,7 @@ def itemInfoDictFormat(y):
     for i in range(len(listings)):
         
         if listings[i]['worldName'] == world:
-            out += '🏠 '
+            out += '🏠'
         else:
             out += listings[i]['worldName'][0] + ' '
 

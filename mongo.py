@@ -2,6 +2,8 @@ from pymongo.mongo_client import MongoClient
 from pymongo.server_api import ServerApi
 import datetime
 
+import itemCalc as ic
+
 uri = 'put uri in file mongo_uri'
 with open('mongo_uri', 'r') as reader:
     uri = reader.read()
@@ -32,9 +34,10 @@ def mongoWrap(y):
     mongo_filter['itemID'] = y['itemID']
     # https://pymongo.readthedocs.io/en/stable/examples/datetimes.html
     mongo_filter['lastUploadTime'] = datetime.datetime.fromtimestamp(y['lastUploadTime'] / 1000)
-    mongo_newvalues_values['averagePrice'] = y['averagePrice']
-    # mongo_newvalues_values['averagePriceNQ'] = y['averagePriceNQ']
-    mongo_newvalues_values['averagePriceHQ'] = y['averagePriceHQ']
+    mongo_newvalues_values['medianListings'] = ic.columnMedian(y, 'listings', -1)
+    mongo_newvalues_values['medianListingsHQ'] = ic.columnMedian(y, 'listings', 1)
+    mongo_newvalues_values['medianSales'] = ic.columnMedian(y, 'recentHistory', -1)
+    mongo_newvalues_values['medianSalesHQ'] = ic.columnMedian(y, 'recentHistory', 1)
     mongo_newvalues['$set'] = mongo_newvalues_values
 
     return [mongo_filter, mongo_newvalues]

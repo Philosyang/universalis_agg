@@ -5,6 +5,8 @@ from telegram.ext import filters, MessageHandler, ApplicationBuilder, CommandHan
 import requests
 import json
 
+import mongo
+
 
 bot_token = 'put token in file bot_token'
 with open('bot_token', 'r') as reader:
@@ -59,6 +61,9 @@ def itemInfo(item_id, listings_count=20, entries=5, noGst=1):
 
     # print(x.text)
     y = json.loads(x.text)
+
+    # push to mongoDB
+    mongo.pyMongoPush(y)
 
     return y
 

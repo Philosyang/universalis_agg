@@ -1,4 +1,5 @@
 bot_token
+mongo_uri
 .vscode/
 
 # Byte-compiled / optimized / DLL files

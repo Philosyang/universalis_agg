@@ -1,0 +1,27 @@
+e.g.: https://universalis.app/api/v2/猫小胖/37843,39313,39591?listings=0&entries=0&fields=items.itemID%2Citems.lastUploadTime%2Citems.currentAveragePrice%2Citems.currentAveragePriceNQ%2Citems.currentAveragePriceHQ
+
+{
+  "items": {
+    "37843": {
+      "itemID": 37843,
+      "lastUploadTime": 1685765764151,
+      "currentAveragePrice": 1692.7069,
+      "currentAveragePriceNQ": 1097.3846,
+      "currentAveragePriceHQ": 1697.75
+    },
+    "39313": {
+      "itemID": 39313,
+      "lastUploadTime": 1685765631457,
+      "currentAveragePrice": 253344.81,
+      "currentAveragePriceNQ": 235018.2,
+      "currentAveragePriceHQ": 289616.22
+    },
+    "39591": {
+      "itemID": 39591,
+      "lastUploadTime": 1685765579666,
+      "currentAveragePrice": 49211.1,
+      "currentAveragePriceNQ": 49211.1,
+      "currentAveragePriceHQ": 0
+    }
+  }
+}

@@ -1,5 +1,6 @@
 from pymongo.mongo_client import MongoClient
 from pymongo.server_api import ServerApi
+import datetime
 
 uri = 'put uri in file mongo_uri'
 with open('mongo_uri', 'r') as reader:
@@ -19,8 +20,8 @@ client = MongoClient(uri, server_api=ServerApi('1'))
 # https://www.mongodb.com/docs/guides/crud/insert/
 
 # database and collection code goes here
-db = client.dbName
-coll = db.collectionName
+db = client.universalis
+coll = db.timeseries
 
 
 def mongoWrap(y):
@@ -29,7 +30,8 @@ def mongoWrap(y):
     mongo_newvalues_values = {}
 
     mongo_filter['itemID'] = y['itemID']
-    mongo_filter['lastUploadTime'] = y['lastUploadTime']
+    # https://pymongo.readthedocs.io/en/stable/examples/datetimes.html
+    mongo_filter['lastUploadTime'] = datetime.datetime.fromtimestamp(y['lastUploadTime'] / 1000)
     mongo_newvalues_values['currentAveragePrice'] = y['currentAveragePrice']
     mongo_newvalues_values['currentAveragePriceNQ'] = y['currentAveragePriceNQ']
     mongo_newvalues_values['currentAveragePriceHQ'] = y['currentAveragePriceHQ']

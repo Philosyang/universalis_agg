@@ -7,18 +7,20 @@ import numpy as np
 
 def columnMedian(y, colName='listings', hq=-1):
     listings = y[colName]
-    pricePerUnitList = []
+    # pricePerUnitList = []   # 180, 180, 181, 190, 190
+    # quantityList = []   # 1, 99, 99, 36, 19
+    combinedList = []   # 180, 180 (repeat 99 times), 181 (repeat 99 times)...
 
     if hq == -1:
         for i in range(len(listings)):
-            pricePerUnitList.append(listings[i]['pricePerUnit'])
+            combinedList.extend(listings[i]['pricePerUnit'] * listings[i]['quantity'])
     elif hq == 0:
         for i in range(len(listings)):
             if not listings[i]['hq']:
-                pricePerUnitList.append(listings[i]['pricePerUnit'])
+                combinedList.extend(listings[i]['pricePerUnit'] * listings[i]['quantity'])
     else:   # hq == 1
         for i in range(len(listings)):
             if listings[i]['hq']:
-                pricePerUnitList.append(listings[i]['pricePerUnit'])
+                combinedList.extend(listings[i]['pricePerUnit'] * listings[i]['quantity'])
 
-    return np.round(np.median(pricePerUnitList), 2)
+    return np.round(np.median(combinedList), 2)

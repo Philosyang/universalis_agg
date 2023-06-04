@@ -18,7 +18,7 @@ dic = json.loads(query_dict)
 url = 'https://universalis.app/api/v2/猫小胖/'
 for key in dic:
     url += key + ','
-url += '?entries=20&noGst=1'
+url += '?entries=10&noGst=1'
 # print(url)
 
 x = requests.get(url)

@@ -13,14 +13,14 @@ def columnMedian(y, colName='listings', hq=-1):
 
     if hq == -1:
         for i in range(len(listings)):
-            combinedList.extend(listings[i]['pricePerUnit'] * listings[i]['quantity'])
+            combinedList.extend([listings[i]['pricePerUnit']] * listings[i]['quantity'])
     elif hq == 0:
         for i in range(len(listings)):
             if not listings[i]['hq']:
-                combinedList.extend(listings[i]['pricePerUnit'] * listings[i]['quantity'])
+                combinedList.extend([listings[i]['pricePerUnit']] * listings[i]['quantity'])
     else:   # hq == 1
         for i in range(len(listings)):
             if listings[i]['hq']:
-                combinedList.extend(listings[i]['pricePerUnit'] * listings[i]['quantity'])
+                combinedList.extend([listings[i]['pricePerUnit']] * listings[i]['quantity'])
 
     return np.round(np.median(combinedList), 2)

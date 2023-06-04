@@ -34,8 +34,8 @@ def mongoWrap(y):
     mongo_filter['itemID'] = y['itemID']
     # https://pymongo.readthedocs.io/en/stable/examples/datetimes.html
     mongo_filter['lastUploadTime'] = datetime.datetime.fromtimestamp(y['lastUploadTime'] / 1000)
-    mongo_newvalues_values['medianListings'] = ic.columnMedian(y, 'listings', -1)
-    mongo_newvalues_values['medianListingsHQ'] = ic.columnMedian(y, 'listings', 1)
+    mongo_newvalues_values['median9Listings'], mongo_newvalues_values['median99Listings'], mongo_newvalues_values['medianListings'] = ic.columnMedian(y, 'listings', -1)
+    mongo_newvalues_values['median9ListingsHQ'], mongo_newvalues_values['median99ListingsHQ'], mongo_newvalues_values['medianListingsHQ'] = ic.columnMedian(y, 'listings', 1)
     mongo_newvalues_values['medianSales'] = ic.columnMedian(y, 'recentHistory', -1)
     mongo_newvalues_values['medianSalesHQ'] = ic.columnMedian(y, 'recentHistory', 1)
     mongo_newvalues['$set'] = mongo_newvalues_values

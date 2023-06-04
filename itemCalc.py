@@ -23,4 +23,9 @@ def columnMedian(y, colName='listings', hq=-1):
             if listings[i]['hq']:
                 combinedList.extend([listings[i]['pricePerUnit']] * listings[i]['quantity'])
 
-    return np.round(np.median(combinedList), 2)
+    if len(combinedList) < 9:
+        return [np.round(np.median(combinedList), 2), np.round(np.median(combinedList), 2), np.round(np.median(combinedList), 2)]
+    elif len(combinedList) < 99:
+        return [np.round(np.median(combinedList[:9]), 2), np.round(np.median(combinedList), 2), np.round(np.median(combinedList), 2)]
+    
+    return [np.round(np.median(combinedList[:9]), 2), np.round(np.median(combinedList[:99]), 2), np.round(np.median(combinedList), 2)]

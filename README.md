@@ -2,7 +2,7 @@
 
 universalis@telegram w/ aggregation WIP
 
-live public dashboard: https://charts.mongodb.com/charts-universalis_agg-dzqsm/public/dashboards/b441fe61-ba24-4782-bf0c-9d320de07850
+live public dashboard: https://charts.mongodb.com/charts-universalis_agg-dzqsm/public/dashboards/647d9283-f045-415d-8c75-2105644c179c
 ---
 
 Done:
